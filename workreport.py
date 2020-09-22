@@ -166,6 +166,7 @@ def openwework():
             d(resourceId="com.tencent.wework:id/g8_").click()
             time.sleep(0.2 * times)
 
+        if d(text="请选择群聊"):
             d(text="请选择群聊").click()
             time.sleep(1 * times)
 
@@ -175,8 +176,8 @@ def openwework():
             time.sleep(0.2 * times)
             # d(textContains=u"允许", instance=0)
 
-            d(text="确定").click()
-            msg = "汇报成功"
+        d(text="提交").click()
+        msg = "汇报成功"
 
     # except:
     finally:
@@ -188,7 +189,7 @@ def pushmsg(msg):
     :return:
     """
     try:
-        url = 'http://wxpusher.zjiecode.com/api/send/message/?appToken=${你的app token}&content=' + msg + '&uid=${推送用户id}' # 在wxpusher.zjiecode.com 申请
+        url = 'http://wxpusher.zjiecode.com/api/send/message/?appToken=apptoken&content=' + msg + '&uid=uid'
         res = requests.get(url)
     except Exception:
         print("推送消息异常")
@@ -231,7 +232,10 @@ def gotoreport(tryTimes = 1):
             writelog(' ----------------------------------------- ')
 
 def dispatchTask():
- 
+
+    # if time.strftime("%Y-%m-%d", time.localtime()) in holiday:
+    # if time.strftime("%Y-%m-%d", time.localtime()) in compensatoryLeave:
+    # if time.strftime("%Y-%m-%d", time.localtime()) in ajustWorking:   
     now = time.localtime()
     #if dateFormat(now) in holiday:
     if time.strftime("%Y-%m-%d", time.localtime()) in holiday:
@@ -253,64 +257,6 @@ def dispatchTask():
     if weekIndex != 6 and weekIndex != 5:
         print("周一至周五")
         gotoreport()
-
-def report():
-    d = u2.connect('emulator-5554')
-    print(d.info)
-    d.healthcheck()
-
-    if d(className='android.widget.EditText', instance=0):
-        d(className='android.widget.EditText', instance=0).set_text(today_work)
-    if d(className='android.widget.EditText', instance=1):
-        d(className='android.widget.EditText', instance=1).set_text(tomorrow_plan)
-    if d(className='android.widget.EditText', instance=2):
-        d(className='android.widget.EditText', instance=2).set_text(other_word)
-
-    # d.swipe_ext("up")
-    # d.drag(sx, sy, ex, ey, 0.5)
-    d.drag(0.5, 0.9, 0.5, 0.3, 0.5)
-    time.sleep(1 * times)
-
-
-    # if d(textContains=u"请选择汇报对象", instance=0):
-    if d(text="请选择汇报对象"):
-        # android.widget.EditText
-        print(4)
-        d(text="请选择汇报对象").click()
-
-        time.sleep(1 * times)
-
-        d(resourceId="com.tencent.wework:id/hi7").click()
-        time.sleep(0.2 * times)
-        d(resourceId="com.tencent.wework:id/g5b").set_text("寿永春")
-        time.sleep(0.2 * times)
-        d(resourceId="com.tencent.wework:id/dr_").click()
-        time.sleep(0.2 * times)
-
-        d(resourceId="com.tencent.wework:id/g5b").set_text("乐萌")
-        time.sleep(0.2 * times)
-        d(resourceId="com.tencent.wework:id/dr_").click()
-        time.sleep(0.2 * times)
-
-        d(resourceId="com.tencent.wework:id/g5b").set_text("陈欢乐")
-        time.sleep(0.2 * times)
-        d(resourceId="com.tencent.wework:id/dr_").click()
-        time.sleep(0.2 * times)
-
-        d(resourceId="com.tencent.wework:id/g8_").click()
-        time.sleep(0.2 * times)
-
-        d(text="请选择群聊").click()
-        time.sleep(1 * times)
-
-        d(text="幸福社").click()
-        time.sleep(0.2 * times)
-        d(textContains=u"确定", instance=0).click()
-        time.sleep(0.2 * times)
-        # d(textContains=u"允许", instance=0)
-
-        # d(text="确定").click()
-        return "汇报成功"
 
 
 # 企业微信自动打卡
