@@ -131,10 +131,11 @@ def openwework():
         print("当前小时：", datetime.datetime.now().hour)
     
         if datetime.datetime.now().hour < 11:
-            if d(text=u"允许").info['text'] == u"允许":
-                print("定位授权")
-                d(text=u"允许").click()
-                time.sleep(3 * times)
+            if d(text=u"允许"):
+                if d(text=u"允许").info['text'] == u"允许":
+                    print("定位授权")
+                    d(text=u"允许").click()
+                    time.sleep(3 * times)
                 
 
             # 早晨卡
@@ -153,10 +154,11 @@ def openwework():
                     msg = "打卡失败:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
         else:
-            if d(text=u"允许").info['text'] == u"允许":
-                print("定位授权")
-                d(text=u"允许").click()
-                time.sleep(3 * times)
+            if d(text=u"允许"):
+                if d(text=u"允许").info['text'] == u"允许":
+                    print("定位授权")
+                    d(text=u"允许").click()
+                    time.sleep(3 * times)
 
             # 下班卡
             if d(text=u"已在范围内").info['text'] == u"已在范围内":
